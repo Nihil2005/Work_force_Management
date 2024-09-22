@@ -1,0 +1,89 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Worker Performance Analysis</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Worker</th>
+            <th>Attendance Days</th>
+            <th>Total Hours Worked</th>
+            <th>Total Performance Value</th>
+            <th>Average Performance Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in analysis_data %}
+        <tr>
+            <td>{{ data.worker.first_name }} {{ data.worker.last_name }}</td>
+            <td>{{ data.attendance_days }}</td>
+            <td>{{ data.total_hours_worked|floatformat:2 }}</td>
+            <td>{{ data.total_performance_value|floatformat:2 }}</td>
+            <td>{{ data.average_performance_value|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div>
+    <canvas id="attendanceChart" width="400" height="200"></canvas>
+    <canvas id="performanceChart" width="400" height="200"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const workers = JSON.parse(document.getElementById('workers-data').textContent);
+    
+    const labels = workers.map(data => `${data.worker.first_name} ${data.worker.last_name}`);
+    const attendanceData = workers.map(data => data.attendance_days);
+    const performanceData = workers.map(data => data.total_performance_value);
+
+    // Attendance Chart
+    const ctxAttendance = document.getElementById('attendanceChart').getContext('2d');
+    const attendanceChart = new Chart(ctxAttendance, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Attendance Days',
+                data: attendanceData,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Performance Chart
+    const ctxPerformance = document.getElementById('performanceChart').getContext('2d');
+    const performanceChart = new Chart(ctxPerformance, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total Performance Value',
+                data: performanceData,
+                fill: false,
+                borderColor: 'rgba(153, 102, 255, 1)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+</script>
+{% endblock %}

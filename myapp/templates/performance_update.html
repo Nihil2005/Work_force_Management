@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Performance Metric Has Been Updated</title>
+    <style>
+        body {
+            background-color: #f7fafc;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+        .body-text {
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Performance Metric Updated</div>
+        <div class="body-text">
+            Hello {{ worker.first_name }},
+        </div>
+        <div class="body-text">
+            Your performance metric "{{ performance_metric.metric_name }}" recorded on {{ performance_metric.recorded_at }} has been updated.<br>
+            New Value: {{ performance_metric.value }}<br>
+            Please check your performance metrics for more details.
+        </div>
+        <div class="body-text">
+            Thank you!
+        </div>
+    </div>
+</body>
+</html>

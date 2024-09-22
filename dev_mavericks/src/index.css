@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Smooth video transitions */
+video {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Hide video controls in full-screen mode */
+  video::-webkit-media-controls-enclosure {
+    display: none !important;
+  }
+  
+
+
+  

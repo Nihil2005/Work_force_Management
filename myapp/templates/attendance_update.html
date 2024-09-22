@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Attendance Record Has Been Updated</title>
+    <style>
+        body {
+            background-color: #f7fafc;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+        .body-text {
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Attendance Record Updated</div>
+        <div class="body-text">
+            Hello {{ worker.first_name }},
+        </div>
+        <div class="body-text">
+            Your attendance record for shift starting at {{ attendance.shift.start_time }} has been updated.<br>
+            Clock-in time: {{ attendance.clock_in_time }}<br>
+            Clock-out time: {{ attendance.clock_out_time }}<br>
+            Please review your attendance records for more details.
+        </div>
+        <div class="body-text">
+            Thank you!
+        </div>
+    </div>
+</body>
+</html>

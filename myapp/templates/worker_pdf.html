@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workers PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px; 
+            max-height: 100px;
+            width: auto;
+            height: auto;
+        }
+        .email-column {
+            width: 25%; 
+        }
+        
+      
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 12px; 
+                padding: 4px; 
+            }
+            img {
+                max-width: 50px; 
+                max-height: 50px;
+            }
+        }
+        @media (max-width: 480px) {
+            th, td {
+                font-size: 10px; 
+                padding: 2px; 
+            }
+            img {
+                max-width: 30px; 
+                max-height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Workers Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Profile Picture</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th class="email-column">Email</th>
+                <th>Position</th>
+                <th>Department</th>
+                <th>Date Joined</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for worker in workers %}
+            <tr>
+                <td>
+                    {% if worker.profile_picture %}
+                        <img src="{{ worker.profile_picture.url }}" alt="Profile Picture">
+                    {% else %}
+                        No Picture
+                    {% endif %}
+                </td>
+                <td>{{ worker.first_name }}</td>
+                <td>{{ worker.last_name }}</td>
+                <td class="email-column">{{ worker.email }}</td>
+                <td>{{ worker.position }}</td>
+                <td>{{ worker.department }}</td>
+                <td>{{ worker.date_joined }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

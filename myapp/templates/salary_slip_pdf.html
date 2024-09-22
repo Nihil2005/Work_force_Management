@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Slip</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @media (max-width: 640px) {
+            .table-responsive {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+       
+        .salary-header {
+            background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+            color: white;
+        }
+        .section-title {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
+        .table-head {
+            background-color: #f7fafc;
+        }
+        .table-row {
+            transition: background-color 0.3s ease;
+        }
+        .table-row:hover {
+            background-color: #edf2f7;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100">
+    <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-screen-md">
+      
+        <div class="text-center mb-8">
+            <img src="https://aqua-famous-vicuna-187.mypinata.cloud/ipfs/QmahcC7ZDpf268kANFkLmgkbF7EVnbhXgRxpHndSSD3mEx?pinataGatewayToken=UtdRdRNSyEJYlQSsGbCzM8sZ5tzZm8Sc2MiGDQuUcbnXpgRvNj2L4iz7L2a0Ulod" alt="Company Logo" class=" h-12 w-12 ">
+            <h1 class="text-3xl font-bold mt-4 mb-2 text-gray-800">Dev Mavericks</h1>
+            <p class="text-gray-500">Chennai, India</p>
+            <p class="text-gray-500">Phone: +91 987654323 | Email: admin@Devmarvericks.com</p>
+        </div>
+
+    
+        <div class="mb-8">
+            <h2 class="text-2xl section-title font-semibold">Worker Information</h2>
+            {% for salary in salaries %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <p><strong class="font-semibold">Worker Name:</strong> {{ salary.worker.first_name }} {{ salary.worker.last_name }}</p>
+                <p><strong class="font-semibold">Position:</strong> {{ salary.worker.position }}</p>
+                <p><strong class="font-semibold">Department:</strong> {{ salary.worker.department }}</p>
+                <p><strong class="font-semibold">Email:</strong> {{ salary.worker.email }}</p>
+                <p><strong class="font-semibold">Date Generated:</strong> {{ salary.date_generated }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+     
+        <div class="text-center mb-8 salary-header py-4 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold">Salary Slip</h2>
+        </div>
+
+    
+        <div class="table-responsive">
+            <table class="w-full bg-white border border-gray-300 rounded-lg shadow-md">
+                <thead class="table-head">
+                    <tr class="text-left border-b border-gray-300">
+                        <th class="p-4 font-semibold">Basic Pay</th>
+                        <th class="p-4 font-semibold">Allowances</th>
+                        <th class="p-4 font-semibold">Deductions</th>
+                        <th class="p-4 font-semibold">Total Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for salary in salaries %}
+                    <tr class="table-row border-b border-gray-300">
+                        <td class="p-4 text-gray-700">{{ salary.basic_pay }}</td>
+                        <td class="p-4 text-gray-700">{{ salary.allowances }}</td>
+                        <td class="p-4 text-gray-700">{{ salary.deductions }}</td>
+                        <td class="p-4 font-semibold text-gray-800">{{ salary.total_salary }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+       
+        <div class="text-center mt-10">
+            <p class="text-gray-500 text-sm">This is a computer-generated document and does not require a signature.</p>
+        </div>
+    </div>
+</body>
+</html>

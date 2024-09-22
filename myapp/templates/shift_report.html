@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shift Created Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        p {
+            font-size: 16px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shift Created Notification</h1>
+        <p>Dear {{ worker.first_name }},</p>
+
+        <p>We are pleased to inform you that a new shift has been created for you.</p>
+
+        <p><strong>Shift Details:</strong></p>
+        <ul>
+            <li><strong>Start Time:</strong> {{ shift.start_time }}</li>
+            <li><strong>End Time:</strong> {{ shift.end_time }}</li>
+        </ul>
+
+        <p>If you have any questions regarding your shift, please feel free to contact your supervisor.</p>
+
+        <p>Best Regards,<br>Dev Mavericks</p>
+    </div>
+    <div class="footer">
+        <p>This email was sent to {{ worker.email }}. If you did not expect this email, please contact your HR department.</p>
+    </div>
+</body>
+</html>
